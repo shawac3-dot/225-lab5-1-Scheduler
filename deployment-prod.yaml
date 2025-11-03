@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab5.1-prod
+  namespace: prod
+  labels:
+    app: lab5.1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lab5.1
+  template:
+    metadata:
+      labels:
+        app: lab5.1
+    spec:
+      containers:
+      - name: lab5.1
+        image: your-docker-registry.com/lab5.1-php-app:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_HOST
+          value: "mysql.prod.svc.cluster.local"
+        - name: DB_NAME
+          value: "scheduling_db"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "prodpassword"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lab5.1-prod
+  namespace: prod
+spec:
+  selector:
+    app: lab5.1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+  loadBalancerIP: 10.48.229.48
