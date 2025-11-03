@@ -1,0 +1,8 @@
+body {font-family: Arial, sans-serif; background-color: #f4f6f9; color: #333; padding: 20px;}
+h1, h2 {color: #003366;}
+table {border-collapse: collapse; width: 80%; margin-top: 20px; background-color: #fff;}
+th, td {border: 1px solid #ccc; padding: 10px; text-align: left;}
+th {background-color: #0074D9; color: white;}
+form {display: inline;}
+input[type="submit"] {background-color: #0074D9; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;}
+input[type="submit"]:hover {background-color: #005fa3;}
